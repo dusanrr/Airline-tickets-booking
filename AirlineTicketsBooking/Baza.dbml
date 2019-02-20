@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Baza" Class="BazaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DUSANR;Initial Catalog=Baza;Integrated Security=True" SettingsObjectName="AirlineTicketsBooking.Properties.Settings" SettingsPropertyName="BazaConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.AvioKompanija" Member="AvioKompanijas">
+    <Type Name="AvioKompanija">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NazivAvioKompanije" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Korisnik" Member="Korisniks">
+    <Type Name="Korisnik">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ImePrezime" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefon" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Adresa" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Grad" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Drzava" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Rank" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Let" Member="Lets">
+    <Type Name="Let">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AKID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LetBR" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SedistaPolazak" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SedistaPovratak" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PolazakDrzava" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PolazakGrad" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DestinacijaDrzava" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DestinacijaGrad" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Polazak" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PolazakDatum" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Dolazak" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DolazakDatum" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PovratakPolazakVreme" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PovratakPolazakDatum" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PovratakDolazakVreme" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PovratakDolazakDatum" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CenaEkonomska" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CenaBiznis" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CenaPrva" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Rezervacija" Member="Rezervacijas">
+    <Type Name="Rezervacija">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDLeta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IDKorisnika" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IPKorisnika" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AKID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AKNaziv" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LetBR" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Sedista" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Klasa" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Karta" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PolazakDrzava" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PolazakGrad" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DestinacijaDrzava" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DestinacijaGrad" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Polazak" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PolazakDatum" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Dolazak" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DolazakDatum" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PovratakPolazakVreme" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PovratakPolazakDatum" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PovratakDolazakVreme" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PovratakDolazakDatum" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Cena" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

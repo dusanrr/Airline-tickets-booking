@@ -1,0 +1,123 @@
+﻿<Window x:Class="AirlineTicketsBooking.KorisnikLetovi"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AirlineTicketsBooking"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="Letovi" Height="617" Width="1176" BorderBrush="Transparent" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="img/letovi.png" >
+    <Window.Resources>
+        <SolidColorBrush x:Key="borderBrush" Color="Red"/>
+        <LinearGradientBrush x:Key="firstBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="Red" Offset="0"/>
+            <GradientStop Color="LightGreen" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="previousBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="LightGreen" Offset="0"/>
+            <GradientStop Color="Red" Offset="0.4"/>
+            <GradientStop Color="LightGreen" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="nextBrush" StartPoint="0,1" EndPoint="1,0">
+            <GradientStop Color="LightGreen" Offset="0"/>
+            <GradientStop Color="Red" Offset="0.4"/>
+            <GradientStop Color="LightGreen" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="lastBrush" StartPoint="0,1" EndPoint="1,0">
+            <GradientStop Color="LightGreen" Offset="0"/>
+            <GradientStop Color="Red" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="progressBrush" StartPoint="0,1" EndPoint="1,1">
+            <GradientStop Color="Violet" Offset="0.1"/>
+            <GradientStop Color="Indigo" Offset="0.3"/>
+            <GradientStop Color="Blue" Offset="0.4"/>
+            <GradientStop Color="Green" Offset="0.5"/>
+            <GradientStop Color="Yellow" Offset="0.7"/>
+            <GradientStop Color="Orange" Offset="0.8"/>
+            <GradientStop Color="Red" Offset="0.9"/>
+        </LinearGradientBrush>
+    </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="Slideshow/Ra02.jpg"/>
+    </Window.Background>
+    <Grid Margin="-52,-38,0,-290" HorizontalAlignment="Right" Width="1228" MouseLeftButtonDown="move" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="84*"/>
+            <RowDefinition Height="27*"/>
+            <RowDefinition Height="89*"/>
+        </Grid.RowDefinitions>
+        <Canvas x:Name="canvas_header" HorizontalAlignment="Right" Height="51" Margin="0,63,0,0" VerticalAlignment="Top" Width="1176" Background="#FF077EB6"/>
+        <Canvas x:Name="canvas_footer" HorizontalAlignment="Left" Height="40" Margin="52,91,0,0" VerticalAlignment="Top" Width="1176" Background="#FF077EB6" Grid.Row="2">
+            <Label x:Name="copyright_label" Content="Copyright 2016" Canvas.Left="550" Canvas.Top="5" Width="122" Foreground="#FFFBF7F7" FontWeight="Bold" FontSize="14"/>
+        </Canvas>
+        <Canvas x:Name="canvas_top" HorizontalAlignment="Right" Height="27" Margin="0,36,0,0" VerticalAlignment="Top" Width="1176" Background="#FF484D4D">
+            <Button x:Name="close_btn" Content="" Canvas.Left="1151" Width="25" Height="23" BorderBrush="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="close_btn_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="User/close.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="minimize_btn" Content="" Canvas.Left="1129" Width="22" Height="19" BorderBrush="{x:Null}" RenderTransformOrigin="-5.855,7.448" Canvas.Top="2" Click="minimize_btn_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="User/minimize.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="logout_btn" Content="" Canvas.Left="11" Width="31" Height="22" BorderBrush="{x:Null}" Canvas.Top="39" Click="logout_btn_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="User/logout.png"/>
+                </Button.Background>
+            </Button>
+            <Label x:Name="label_Copy" Content="Logout" Canvas.Left="4" Canvas.Top="51" Width="56" Foreground="#FFF9F3F3" FontWeight="Bold" FontSize="14" Background="{x:Null}" Height="32"/>
+        </Canvas>
+
+        <Button x:Name="home_btn" Content="Home" HorizontalAlignment="Left" Margin="474,83,0,0" VerticalAlignment="Top" Width="89" Background="#FF3085CD" FontWeight="Bold" Foreground="#FFF5EEEE" BorderBrush="{x:Null}" Click="home_btn_Click"/>
+        <Button x:Name="rezervacije_btn" Content="Reservations" HorizontalAlignment="Left" Margin="591,83,0,0" VerticalAlignment="Top" Width="88" Background="#FF3085CD" FontWeight="Bold" Foreground="#FFF5EEEE" BorderBrush="{x:Null}" Click="rezervacije_btn_Click"/>
+        <Button x:Name="letovi_btn" Content="Flights" HorizontalAlignment="Left" Margin="712,83,0,0" VerticalAlignment="Top" Width="90" Background="#FF3085CD" FontWeight="Bold" Foreground="#FFF5EEEE" BorderBrush="{x:Null}" Click="letovi_btn_Click"/>
+        <DataGrid x:Name="dataGrid_flights" HorizontalAlignment="Left" Margin="104,168,0,0" VerticalAlignment="Top" Height="257" Width="1077" Grid.RowSpan="2" Background="Transparent" CanUserReorderColumns="False" CanUserResizeColumns="False" GridLinesVisibility="None" Foreground="#FF080808" FontWeight="Bold" BorderBrush="{x:Null}" CanUserResizeRows="False" EnableRowVirtualization="False" IsTextSearchEnabled="True" AutomationProperties.IsColumnHeader="True" IsReadOnly="True" CanUserSortColumns="False" SelectionMode="Single" SelectionUnit="Cell" RowDetailsVisibilityMode="Visible" AutoGeneratedColumns="dataGrid_flights_AutoGeneratedColumns"/>
+        <Label x:Name="label" Content="Letovi" HorizontalAlignment="Left" Margin="578,119,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="#FFF7F3F3" FontFamily="Elektra"/>
+        <Label x:Name="label_nemalet" Content="Trenutno nema letova u bazi podataka!" HorizontalAlignment="Left" Margin="388,212,0,0" VerticalAlignment="Top" Width="550" Foreground="#FFF10909" FontWeight="Bold" FontSize="24" Visibility="Hidden"/>
+        <GroupBox Header="Rezervacija avionske karte" HorizontalAlignment="Left" Margin="352,34,0,0" VerticalAlignment="Top" Height="180" Width="651" Grid.RowSpan="2" Foreground="#FFF9F8F6" BorderBrush="#FFFBF9F0" Grid.Row="1" Background="#FFB65F07">
+            <Grid HorizontalAlignment="Left" Height="170" Margin="0,0,-2,-12" VerticalAlignment="Top" Width="641">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="37*"/>
+                    <ColumnDefinition Width="17*"/>
+                    <ColumnDefinition Width="158*"/>
+                </Grid.ColumnDefinitions>
+                <RadioButton x:Name="povratna_rb" Content="Povratna" HorizontalAlignment="Left" Margin="21,22,0,0" VerticalAlignment="Top" Grid.Column="2" Checked="povratna_rb_Checked"/>
+                <RadioButton x:Name="jedanpravac_rb" Content="Jedan pravac" Grid.Column="2" HorizontalAlignment="Left" Margin="181,22,0,0" VerticalAlignment="Top" Checked="jedanpravac_rb_Checked"/>
+                <Label x:Name="polaziste_label" Content="Polazak - grad" HorizontalAlignment="Left" Margin="21,40,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                <Label x:Name="odrediste_label" Content="Destinacija - grad" HorizontalAlignment="Left" Margin="21,84,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                <TextBox x:Name="polaziste_tb" HorizontalAlignment="Left" Margin="11,62,0,0" VerticalAlignment="Top" Width="120" Grid.Column="2" IsReadOnly="True" Height="22"/>
+                <TextBox x:Name="destinacija_tb" HorizontalAlignment="Left" Margin="11,108,0,0" VerticalAlignment="Top" Width="120" Grid.Column="2" IsReadOnly="True" Height="22"/>
+                <Label x:Name="dpolaska_label" Content="Datum polaska" HorizontalAlignment="Left" Margin="181,39,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.768,0.731" Grid.Column="2"/>
+                <Label x:Name="dpovratka_label" Content="Datum povratka" HorizontalAlignment="Left" Margin="181,84,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.768,0.731" Grid.Column="2"/>
+                <TextBox x:Name="dpolaska_tb" HorizontalAlignment="Left" Margin="171,60,0,0" VerticalAlignment="Top" Width="120" Grid.Column="2" IsReadOnly="True" Height="24"/>
+                <TextBox x:Name="dpovratka_tb" HorizontalAlignment="Left" Margin="171,106,0,0" VerticalAlignment="Top" Width="120" Grid.Column="2" IsReadOnly="True" Height="24"/>
+                <Label x:Name="sedista_label" Content="Mesta" HorizontalAlignment="Left" Margin="96,39,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                <ComboBox x:Name="sedista_cb" HorizontalAlignment="Left" Margin="91,62,0,0" VerticalAlignment="Top" Width="56" SelectedIndex="0" Grid.ColumnSpan="2" SelectionChanged="sedista_cb_SelectionChanged">
+                    <ComboBoxItem x:Name="sed1" Content="1"/>
+                    <ComboBoxItem x:Name="sed2" Content="2"/>
+                    <ComboBoxItem x:Name="sed3" Content="3"/>
+                    <ComboBoxItem x:Name="sed4" Content="4"/>
+                    <ComboBoxItem x:Name="sed5" Content="5"/>
+                    <ComboBoxItem x:Name="sed6" Content="6"/>
+                </ComboBox>
+                <Label x:Name="label_klasa" Content="Klasa" HorizontalAlignment="Left" Margin="98,84,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                <ComboBox x:Name="klasa_cb" HorizontalAlignment="Left" Margin="91,108,0,0" VerticalAlignment="Top" Width="56" RenderTransformOrigin="4.732,0.818" Grid.ColumnSpan="2" SelectionChanged="klasa_cb_SelectionChanged">
+                    <ComboBoxItem x:Name="Ekonomska" Content="Ekonomska"/>
+                    <ComboBoxItem x:Name="Biznis" Content="Biznis"/>
+                    <ComboBoxItem x:Name="Prva" Content="Prva"/>
+                </ComboBox>
+                <Button x:Name="potvrdirez_btn" Content="Potvrdi rezervaciju" HorizontalAlignment="Left" Margin="21,137,0,0" VerticalAlignment="Top" Width="311" Background="#FF3085CD" FontWeight="Bold" Foreground="#FFF5EEEE" Grid.Column="2" Click="potvrdirez_btn_Click"/>
+                <Label x:Name="idleta_label" Content="ID leta" HorizontalAlignment="Left" Margin="22,52,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFFDF8F8"/>
+                <ComboBox x:Name="idleta_cb" HorizontalAlignment="Left" Margin="24,74,0,0" VerticalAlignment="Top" Width="43" Height="40" SelectionChanged="idleta_cb_SelectionChanged"/>
+                <Label x:Name="rezpic_label" Content="" HorizontalAlignment="Left" Margin="37,-16,0,0" VerticalAlignment="Top" Width="65" Height="78">
+                    <Label.Background>
+                        <ImageBrush ImageSource="img/rezervacije.png"/>
+                    </Label.Background>
+                </Label>
+                <Label x:Name="ukupnacena_label" Content="Ukupna cena" HorizontalAlignment="Left" Margin="389,0,0,0" VerticalAlignment="Top" Grid.Column="2" Foreground="#FF00E29A"/>
+                <TextBox x:Name="ukupnacena_tb" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="389,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" IsReadOnly="True"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
